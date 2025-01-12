@@ -7,6 +7,13 @@ def load_lora_weights(pipe, lora_info):
         pipe.load_lora_weights(lora_path, adapter_name=adapter_name)
     return pipe
 
+def unload_lora_weights(pipe):
+    """
+    Given the pipeline object, unload each LoRA from the pipeline.
+    """
+            
+    return pipe.unload_lora_weights(lora_path, adapter_name=adapter_name)
+
 def set_lora_weights(pipe, adapter_names, adapter_weights):
     """
     Given a list of adapter names and corresponding adapter weights,
