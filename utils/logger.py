@@ -2,7 +2,7 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler
 
-def setup_logger(name: str, log_file: str = "app.log", level: logging.Level = logging.INFO):
+def setup_logger(name: str, log_file: str = "app.log", level: int = logging.INFO):
     """
     Set up a logger with a RotatingFileHandler.
     
@@ -42,6 +42,6 @@ def setup_logger(name: str, log_file: str = "app.log", level: logging.Level = lo
 
 # Example usage of the logger
 if __name__ == "__main__":
-    logger = setup_logger("test_logger", "logs/test.log")
+    logger = setup_logger("test_logger", "logs/test.log", logging.DEBUG)
     logger.info("This is an info message")
     logger.error("This is an error message")
