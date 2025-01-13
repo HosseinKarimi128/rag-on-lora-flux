@@ -75,6 +75,10 @@ def extract_named_entities(prompt: str):
     doc = nlp(prompt)
     detected_entities = [ent.text.lower() for ent in doc.ents]
     logger.info("Detected entities: %s", detected_entities)
+    for ent in ENTITY_TO_LORA.keys():
+        if ent in prompt.lower():
+            detected_entities.append(ent)
+    logger.info("Detected entities after manual adding: %s", detected_entities)
     recognized_entities = find_closest_entities(detected_entities, ENTITY_TO_LORA.keys())
     logger.info("Recognized entities: %s", recognized_entities)
     return recognized_entities
