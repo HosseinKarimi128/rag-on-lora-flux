@@ -1,13 +1,14 @@
 PATTERNS = [
     {
         "label": "PERSON",
-        "pattern": "Shahab Hosseini"
+        "pattern": [{"LOWER": "shahab"}, {"LOWER": "hosseini"}]
     },
     {
         "label": "CLOTHING",
-        "pattern": "Kurdish clothing"
+        "pattern": [{"LOWER": "kurdish"}, {"LOWER": "clothing"}]
     }
 ]
+
 
 
 ENTITY_TO_LORA = {
