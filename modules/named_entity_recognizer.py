@@ -30,8 +30,13 @@ def find_closest_entities(detected_entities, entity_to_lora_keys):
     for entity in detected_entities:
         logger.debug("Processing entity: %s", entity)
         entity_embedding = get_embedding(entity)
+        logger.debug("Entity embedding shape: %s", entity_embedding.cpu().numpy().shape)
+        logger.debug("LoRA key embedding shape for %s: %s", key, lora_key_embeddings[key].cpu().numpy().shape)
         similarities = {
-            key: cosine_similarity([entity_embedding.cpu().numpy()], [lora_key_embeddings[key].cpu().numpy()])[0][0]
+            key: cosine_similarity(
+                entity_embedding.cpu().numpy().reshape(1, -1), 
+                lora_key_embeddings[key].cpu().numpy().reshape(1, -1)
+            )[0][0]
             for key in lora_key_embeddings
         }
         # Find the key with the highest similarity
