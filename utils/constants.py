@@ -6,6 +6,10 @@ PATTERNS = [
     {
         "label": "CLOTHING",
         "pattern": [{"LOWER": "kurdish"}, {"LOWER": "clothing"}]
+    },
+    {
+        "label": "SHRINE",
+        "pattern": [{"LOWER": "imam"}, {"LOWER": "reza"}, {"LOWER": "holy"}, {"LOWER": "shrine"}]
     }
 ]
 

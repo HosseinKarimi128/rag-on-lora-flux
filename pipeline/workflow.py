@@ -42,7 +42,7 @@ def generate_image(
         logger.info("Loading LoRA weights for entities.")
         load_lora_weights(pipe, lora_info)
         adapter_names = [adapter_name for _, adapter_name in lora_info]
-        adapter_weights = [0.4 for _ in adapter_names]
+        adapter_weights = [0.8 for _ in adapter_names]
         set_lora_weights(pipe, adapter_names, adapter_weights)
         logger.debug("Set LoRA weights: %s", adapter_weights)
 
