@@ -31,6 +31,12 @@ def generate_prompted_image(req: PromptRequest):
     logger.info("Received request to generate image with prompt: %s", req.prompt)
     
     try:
+        # Validate input dimensions to ensure they are <= 2
+        if req.height is not None and req.width is not None:
+            if req.height > 2 or req.width > 2:
+                logger.error("Invalid dimensions: height=%d, width=%d. Must be <= 2.", req.height, req.width)
+                return {"error": "Height and width must be <= 2."}, 400
+
         image = generate_image(
             prompt=req.prompt,
             height=req.height,
