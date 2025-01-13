@@ -30,30 +30,30 @@ def generate_prompted_image(req: PromptRequest):
     """
     logger.info("Received request to generate image with prompt: %s", req.prompt)
     
-    try:
-        image = generate_image(
-            prompt=req.prompt,
-            height=req.height,
-            width=req.width,
-            guidance_scale=req.guidance_scale,
-            num_inference_steps=req.num_inference_steps,
-            max_sequence_length=req.max_sequence_length,
-            seed=req.seed
-        )
-        
-        logger.info("Image generated successfully.")
-        
-        # Convert the PIL image to a buffer
-        buffer = BytesIO()
-        image.save(buffer, format="PNG")
-        buffer.seek(0)
-
-        # Return the buffer as a streaming response with image/png MIME type
-        return StreamingResponse(buffer, media_type="image/png")
+    # try:
+    image = generate_image(
+        prompt=req.prompt,
+        height=req.height,
+        width=req.width,
+        guidance_scale=req.guidance_scale,
+        num_inference_steps=req.num_inference_steps,
+        max_sequence_length=req.max_sequence_length,
+        seed=req.seed
+    )
     
-    except Exception as e:
-        logger.error("Error generating image: %s", e)
-        return {"error": "Image generation failed"}, 500
+    logger.info("Image generated successfully.")
+    
+    # Convert the PIL image to a buffer
+    buffer = BytesIO()
+    image.save(buffer, format="PNG")
+    buffer.seek(0)
+
+    # Return the buffer as a streaming response with image/png MIME type
+    return StreamingResponse(buffer, media_type="image/png")
+    
+    # except Exception as e:
+    #     logger.error("Error generating image: %s", e)
+    #     return {"error": "Image generation failed"}, 500
 
 if __name__ == "__main__":
     logger.info("Starting FastAPI application.")
