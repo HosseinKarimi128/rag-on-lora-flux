@@ -13,6 +13,7 @@ nlp = spacy.load("en_core_web_sm")
 ruler = nlp.add_pipe("entity_ruler", before="ner")
 ruler.add_patterns(PATTERNS)
 logger.info("Custom patterns loaded successfully.")
+embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def get_embedding(text):
     """
