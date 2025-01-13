@@ -2,8 +2,7 @@ import spacy
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import numpy as np
-from .retrieval import ENTITY_TO_LORA
-import json
+from utils.constants import PATTERNS, ENTITY_TO_LORA
 
 from utils.logger import setup_logger
 logger = setup_logger("app_logger", "logs/app.log")
@@ -11,22 +10,8 @@ logger = setup_logger("app_logger", "logs/app.log")
 # Load NLP model and embedding model once
 nlp = spacy.load("en_core_web_sm")
 
-def load_custom_patterns(patterns_file):
-    """
-    Load custom entity patterns from a JSON file and add them to the NLP pipeline.
-    """
-    try:
-        with open(patterns_file, "r") as f:
-            patterns = json.load(f)
-        ruler = nlp.add_pipe("entity_ruler", before="ner")
-        ruler.add_patterns(patterns)
-        logger.info("Custom patterns loaded successfully from %s.", patterns_file)
-    except Exception as e:
-        logger.error("Error loading custom patterns: %s", e)
-
-load_custom_patterns("custom_entity_patterns.json")
-
-embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
+ruler = nlp.add_pipe("entity_ruler", before="ner")
+ruler.add_patterns(PATTERNS)
 
 
 def get_embedding(text):
