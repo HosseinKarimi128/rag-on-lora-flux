@@ -3,6 +3,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import numpy as np
 from .retrieval import ENTITY_TO_LORA
+import json
 
 from utils.logger import setup_logger
 logger = setup_logger("app_logger", "logs/app.log")
