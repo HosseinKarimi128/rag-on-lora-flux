@@ -11,8 +11,8 @@ logger = setup_logger("app_logger", "logs/app.log")
 nlp = spacy.load("en_core_web_sm")
 
 ruler = nlp.add_pipe("entity_ruler", before="ner")
-ruler.add_patterns(PATTERNS)
-
+ruler.add_patterns(patterns)
+logger.info("Custom patterns loaded successfully.")
 
 def get_embedding(text):
     """

@@ -1,15 +1,14 @@
-PATTERNS = {
-    "patterns": [
-        {
-            "label": "PERSON",
-            "pattern": "Shahab Hosseini"
-        },
-        {
-            "label": "CLOTHING",
-            "pattern": "Kurdish clothing"
-        }
-    ]
-}
+PATTERNS = [
+    {
+        "label": "PERSON",
+        "pattern": "Shahab Hosseini"
+    },
+    {
+        "label": "CLOTHING",
+        "pattern": "Kurdish clothing"
+    }
+]
+
 
 ENTITY_TO_LORA = {
     "cat": ("strangerzonehf/Flux-Sketch-Ep-LoRA", "Sketch"),
