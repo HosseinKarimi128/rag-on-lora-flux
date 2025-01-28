@@ -1,9 +1,7 @@
 import spacy
 nlp = spacy.load("en_core_web_sm")
 
-# Generate the ENTITY_TO_LORA dictionary for all provided values
-all_entities = [
-    # First set of entities
+place_entities = [
     "tomb-of-cyrus",
     "bam-citadel",
     "arg-of-karim-khan",
@@ -23,15 +21,17 @@ all_entities = [
     "Naqshe Rostam",
     "Lut Desert",
     "Darband",
-    "Chahkooh Canyon",
-    # Second set of entities
+    "Chahkooh Canyon"]
+
+clothing_entities = [
     "kurdish clothes",
-    "woman kurdish clothes",
-    "Man Northern Iranian clothes",
-    "Woman Northern Iranian clothes",
-    "man turkish clothes",
-    "Woman turkish clothes",
-    # Third set of entities (names)
+    "woman kurdish clothes", 
+    "Man Northern Iranian clothes", 
+    "Woman Northern Iranian clothes", 
+    "man turkish clothes", 
+    "Woman turkish clothes"]
+
+person_entities = [
     "Ahmad Mehranfar",
     "Ali Nasirian",
     "Alireza Khamseh",
@@ -67,13 +67,14 @@ all_entities = [
     "Sam Derakhshani",
     'Shahab Hosseini'
 ]
-
+# Generate the ENTITY_TO_LORA dictionary for all provided values
+all_entities = place_entities + clothing_entities + person_entities
+print(all_entities)
 # Generate the dictionary
 ENTITY_TO_LORA = {
     entity.lower().replace(" ", "-"): (f"HoKa/{entity.lower().replace(' ', '-')}", entity)
     for entity in all_entities
 }
-
 # Function to classify and generate patterns
 PATTERNS = []
 
@@ -83,7 +84,13 @@ for entity in all_entities:
     for ent in doc.ents:  # Check if spaCy recognizes an entity
         # Create a pattern dynamically
         pattern = [{"LOWER": word.lower()} for word in entity.split()]
-        PATTERNS.append({"ENT_TYPE": ent.label_, "pattern": pattern})
+        if entity in place_entities:
+            label = "PLACE"
+        elif entity in clothing_entities:
+            label = "CLOTHING"
+        elif entity in person_entities:
+            label = "PERSON"
+        PATTERNS.append({"label": label, "pattern": pattern})
 
 
 print(PATTERNS[0:3])
