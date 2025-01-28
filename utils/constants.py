@@ -26,8 +26,8 @@ place_entities = [
 clothing_entities = [
     "kurdish clothes",
     "woman kurdish clothes", 
-    "Man Northern Iranian clothes", 
-    "Woman Northern Iranian clothes", 
+    # "Man Northern Iranian clothes", 
+    # "Woman Northern Iranian clothes", 
     "man turkish clothes", 
     "Woman turkish clothes"]
 
