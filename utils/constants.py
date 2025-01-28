@@ -1,19 +1,5 @@
 import spacy
 nlp = spacy.load("en_core_web_sm")
-PATTERNS = [
-    {
-        "label": "PERSON",
-        "pattern": [{"LOWER": "shahab"}, {"LOWER": "hosseini"}]
-    },
-    {
-        "label": "CLOTHING",
-        "pattern": [{"LOWER": "kurdish"}, {"LOWER": "clothing"}]
-    },
-    {
-        "label": "SHRINE",
-        "pattern": [{"LOWER": "imam"}, {"LOWER": "reza"}, {"LOWER": "holy"}, {"LOWER": "shrine"}]
-    }
-]
 
 # Generate the ENTITY_TO_LORA dictionary for all provided values
 all_entities = [
@@ -87,13 +73,6 @@ ENTITY_TO_LORA = {
     entity.lower().replace(" ", "-"): (f"HoKa/{entity.lower().replace(' ', '-')}", entity)
     for entity in all_entities
 }
-
-# Define the categories
-shrine_keywords = ["tomb", "citadel", "garden", "palace", "square", "bridge", "shrine", "vault", "castle", "desert", "tower", "mount"]
-clothing_keywords = ["clothes", "clothing"]
-person_keywords = ["Ahmad", "Ali", "Alireza", "Amin", "Amir", "Ashkan", "Bahram", "Farhad", "Hadi", "Hamed", "Hamid",
-                   "Hootan", "Houman", "Javad", "Mehran", "Mohammad", "Mohsen", "Navid", "Parsa", "Parviz", "Payman",
-                   "Pejman", "Rambod", "Reza", "Saeed", "Sam", "Shahab"]
 
 # Function to classify and generate patterns
 PATTERNS = []
