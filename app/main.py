@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from typing import Optional
 import uvicorn
 from io import BytesIO
-from pipeline.workflow import generate_image
+from .pipeline.workflow import generate_image
 
 
 from utils.logger import setup_logger
