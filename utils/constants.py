@@ -2,9 +2,9 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 
 place_entities = [
-    "tomb-of-cyrus",
-    "bam-citadel",
-    "arg-of-karim-khan",
+    "tomb of cyrus",
+    "bam citadel",
+    "arg of karim khan",
     "Shahzadeh Mahan Historical Garden",
     "Bisotun",
     "Persepolis",
