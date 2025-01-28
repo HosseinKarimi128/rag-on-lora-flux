@@ -46,7 +46,7 @@ def find_closest_entities(detected_entities, entity_to_lora_keys):
         # Find the key with the highest similarity
         best_match = max(similarities, key=similarities.get)
         logger.debug("Best match for entity '%s': %s with similarity %f", entity, best_match, similarities[best_match])
-        if similarities[best_match] > 0.5:  # Adjust threshold as needed
+        if similarities[best_match] > 0.9:  # Adjust threshold as needed
             recognized_entities.append(best_match)
             logger.info("Recognized entity: %s", best_match)
         else:
